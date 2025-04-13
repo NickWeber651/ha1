@@ -119,6 +119,24 @@ class CalculatorTest {
 
          assertEquals(expected, actual);
    }
+
+   @Test
+    @DisplayName("should preserve buffered values on first clear press")
+    void testPreserveBuffered() {
+         Calculator calc = new Calculator();
+
+         calc.pressDigitKey(2);
+         calc.pressDigitKey(0);
+         calc.pressBinaryOperationKey("+");
+         calc.pressDigitKey(1);
+         calc.pressDigitKey(0);
+         calc.pressClearKey();
+
+         calc.pressEqualsKey();
+         String expected = "20";
+         String actual = calc.readScreen();
+         assertEquals(expected, actual);
+   }
 }
 
 
