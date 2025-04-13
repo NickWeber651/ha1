@@ -77,7 +77,13 @@ public class Calculator {
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
-            case "1/x" -> 1 / Double.parseDouble(screen);
+            case "1/x" -> {
+                double input = Double.parseDouble(screen);
+                if (input == 0) yield Double.NaN;
+                else yield 1 / input;
+            }
+
+
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
